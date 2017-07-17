@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DOMAIN=${1-alice.example.com}
+
+echo "Creating certs for $DOMAIN"
+
+mkdir ./certs
+openssl genrsa 2048 > ./certs/$DOMAIN.key
+openssl req -new -x509 -nodes -sha256 -days 3650 -key ./certs/$DOMAIN.key -subj "/CN=*.$DOMAIN" > ./certs/$DOMAIN.crt

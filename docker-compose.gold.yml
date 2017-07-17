@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  gold:
+    image: linkeddata/gold
+    restart: always
+    hostname: alice
+    domainname: example.com
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./data/:/gold/data
+    - ./certs:/gold/certs:ro
+    command: ["server", "-https=:443", "-http=:80", "-root=/gold/data/", "-boltPath=/tmp/bold.db", "-metaSuffix=.meta", "-aclSuffix=.acl", "-nohttp", "-tlsKeyFile=/gold/certs/alice.example.com.key", "-tlsCertFile=/gold/certs/alice.example.com.crt", "-debug"]

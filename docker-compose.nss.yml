@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  solid:
+    build: .
+    restart: always
+    hostname: alice
+    domainname: example.com
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./data/:/solid/data/
+    - ./certs:/solid/certs:ro
+    - ./config.json:/solid/run/config.json:ro
+#    - ./run/:/solid/run
+    command: ["/solid/run/bin/solid.js", "start", "--verbose"]

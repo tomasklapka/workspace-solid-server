@@ -1,0 +1,24 @@
+{
+  "root": "/solid/data",
+  "port": "443",
+  "serverUri": "https://alice.example.com",
+  "auth": "oidc",
+  "webid": true,
+  "mount": "/",
+  "sslKey": "/solid/certs/alice.example.com.key",
+  "sslCert": "/solid/certs/alice.example.com.crt",
+  "idp": false,
+  "useProxy": true,
+  "proxy": "/proxy",
+  "acceptCertificateHeader": true,
+  "EXAMPLE_forceUser": "https://alice.example.com/profile/card#me",
+  "EXAMPLE_email": {
+    "host": "smtp.example.com",
+    "port": "587",
+    "secure" : false,
+    "auth": {
+      "user": "alice@example.com",
+      "pass": "Alice's Password"
+    }
+  }
+}

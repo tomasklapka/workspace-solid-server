@@ -1,0 +1,23 @@
+#!/bin/bash
+
+SERVER=${1-nss}
+CONFIG=./docker-compose.$SERVER.yml
+TARGET=./docker-compose.yml
+BACKUP=./docker-compose.backup.yml
+
+if [ ! -f $CONFIG ]; then
+    echo "please state which docker-compose yml file you want to run"
+    exit 1
+fi
+
+if [ "$2" == "set" ]; then
+    if [ -f $TARGET ]; then
+        echo "Backing up current docker-compose config"
+        mv --backup=numbered $TARGET $BACKUP
+    fi
+    echo "Setting config for gold as a docker-compose default"
+    cp $CONFIG $TARGET
+    exit
+fi
+
+docker-compose -f $CONFIG ${@:2}
